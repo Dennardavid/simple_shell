@@ -126,8 +126,9 @@ char *_strchr(const char *str, char c);
 /* more_strings.c */
 int _strlen(const char *str);
 char *_strtok(char *str, const char *delim);
-int _isDigit(const char *s);
+int _isDigit(const char *str);
 void reverse_string(char *str);
+int compare_chars(char *str, const char *delim);
 
 /* getline.c */
 void copy_line(char **line_ptr, size_t *size, char *buffer, size_t index);
