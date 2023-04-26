@@ -32,7 +32,6 @@ extern char **environ;
  * including arguments, user input, command arguments, exit status,
  * command counter, environment variables, and process ID.
  */
-
 typedef struct info
 {
 	char **arguments;
@@ -74,7 +73,7 @@ typedef struct line_node_s
 } line_node;
 
 /**
- * struct r_var_node - structure to hold variable information
+ * struct var_node_s - structure to hold variable information
  * @variable_length: length of variable
  * @value: value of variable
  * @value_length: length of value
@@ -84,7 +83,6 @@ typedef struct line_node_s
  * including the length of the variable, the value of the variable,
  * the length of the value, and a pointer to the next variable in the list.
  */
-
 typedef struct var_node_s
 {
 	int variable_length;
