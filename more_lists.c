@@ -3,9 +3,9 @@
 /**
  * add_var_node - adds a variable node to a linked list
  * @list_head: double pointer to the head of the list
- * @var_len: length of the variable name
- * @value: value of the variable
- * @value_len: length of the value
+ * @vlen: length of the variable name
+ * @val: value of the variable
+ * @val_len: length of the value
  *
  * Return: pointer to the new node
  */
