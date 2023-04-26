@@ -130,6 +130,10 @@ int _isDigit(const char *str);
 void reverse_string(char *str);
 int compare_chars(char *str, const char *delim);
 
+/* shell.c */
+void free_shell_data(shell_info *shell_data);
+void set_shell_data(shell_info *shell_data, char **args);
+
 /* getline.c */
 void copy_line(char **line_ptr, size_t *size, char *buffer, size_t index);
 ssize_t read_line(char **line_ptr, size_t *size, FILE *stream);
