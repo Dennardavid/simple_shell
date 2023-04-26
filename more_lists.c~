@@ -9,7 +9,7 @@
  *
  * Return: pointer to the new node
  */
-var_node *add_var_node(var_node **list_head, int vlen, char *val, int val_len)
+var_node *add_var_node(var_node **list_head, int vlen, char *value, int val_len)
 {
 	var_node *new_node;
 	var_node *temp_node;
@@ -20,8 +20,8 @@ var_node *add_var_node(var_node **list_head, int vlen, char *val, int val_len)
 		return (NULL);
 	}
 
-	new_node->vlen = vlen;
-	new_node->val = val;
+	new_node->v_len = v_len;
+	new_node->value = value;
 	new_node->val_len = val_len;
 	new_node->next = NULL;
 
