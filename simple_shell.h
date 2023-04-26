@@ -85,9 +85,9 @@ typedef struct line_node_s
  */
 typedef struct var_node_s
 {
-	int variable_length;
-	char *value;
-	int value_length;
+	int vlen;
+	char *val;
+	int val_len;
 	struct var_node_s *next_node;
 } var_node;
 
@@ -121,7 +121,7 @@ char *_strcat(char *str1, const char *str2);
 char *_strcpy(char *dest, char *src);
 int _strcmp(const char *str1, const char *str2);
 char *_strdup(const char *str);
-char *_strchr(const char *str, char c);
+char *_strchr(char *str, char c);
 
 /* more_strings.c */
 int _strlen(const char *str);

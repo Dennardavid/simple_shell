@@ -36,7 +36,7 @@ void set_shell_data(shell_info *shell_data, char **args)
 	unsigned int index;
 
 	/* Set command line arguments */
-	shell_data->av = args;
+	shell_data->arguments = args;
 
 	/* Initialize other members */
 	shell_data->user_input = NULL;

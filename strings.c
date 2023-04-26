@@ -78,7 +78,7 @@ int _strcmp(const char *str1, const char *str2)
  * Return: pointer to the first occurrence of the character c in the
  * string str else NULL
  */
-char *_strchr(const char *str, char c)
+char *_strchr(char *str, char c)
 {
 	unsigned int index = 0;
 

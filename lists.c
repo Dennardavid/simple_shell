@@ -18,8 +18,8 @@ sep_node *add_separator_to_end(sep_node **list_head, char sep_char)
 		return (NULL);
 	}
 
-	new_node->separator = sep_char;
-	new_node->next = NULL;
+	new_node->next_node = sep_char;
+	new_node->next_node = NULL;
 	temp = *list_head;
 
 	if (!temp)
@@ -28,11 +28,11 @@ sep_node *add_separator_to_end(sep_node **list_head, char sep_char)
 	}
 	else
 	{
-		while (temp->next != NULL)
+		while (temp->next_node != NULL)
 		{
-			temp = temp->next;
+			temp = temp->next_node;
 		}
-		temp->next = new_node;
+		temp->next_node = new_node;
 	}
 
 	return (*list_head);
@@ -53,7 +53,7 @@ void freeSeparator(sep_node **list_head)
 		current = *list_head;
 		while ((temp = current))
 		{
-			current = current->next;
+			current = current->next_node;
 			free(temp);
 		}
 		*list_head = NULL;
@@ -78,8 +78,8 @@ line_node *add_line_to_end(line_node **list_head, char *line_str)
 		return (NULL);
 	}
 
-	new_node->line = line_str;
-	new_node->next = NULL;
+	new_node->next_node = line_str;
+	new_node->next_node = NULL;
 	temp_node = *list_head;
 
 	if (!temp_node)
@@ -88,11 +88,11 @@ line_node *add_line_to_end(line_node **list_head, char *line_str)
 	}
 	else
 	{
-		while (temp_node->next != NULL)
+		while (temp_node->next_node != NULL)
 		{
-			temp_node = temp_node->next;
+			temp_node = temp_node->next_node;
 		}
-		temp_node->next = new_node;
+		temp_node->next_node = new_node;
 	}
 
 	return (*list_head);

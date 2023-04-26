@@ -23,7 +23,7 @@ var_node *add_var_node(var_node **list_head, int vlen, char *val, int val_len)
 	new_node->vlen = vlen;
 	new_node->val = val;
 	new_node->val_len = val_len;
-	new_node->next = NULL;
+	new_node->next_node = NULL;
 
 	if (*list_head == NULL)
 	{
@@ -32,11 +32,11 @@ var_node *add_var_node(var_node **list_head, int vlen, char *val, int val_len)
 	else
 	{
 		temp_node = *list_head;
-		while (temp_node->next != NULL)
+		while (temp_node->next_node != NULL)
 		{
-			temp_node = temp_node->next;
+			temp_node = temp_node->next_node;
 		}
-		temp_node->next = new_node;
+		temp_node->next_node = new_node;
 	}
 
 	return (new_node);
@@ -50,14 +50,14 @@ var_node *add_var_node(var_node **list_head, int vlen, char *val, int val_len)
 void free_var_node(var_node **list_head)
 {
 	var_node *temp_node;
-	var_node *curr_node;
+	var_node *current_node;
 
 	if (!list_head)
 	{
 		current_node = *list_head;
 		while ((temp_node = current_node) != NULL)
 		{
-			current_node = current_node->next;
+			current_node = current_node->next_node;
 			free(temp_node);
 		}
 		*list_head = NULL;
@@ -78,7 +78,7 @@ void free_line_node(line_node **list_head)
 		current_node = *list_head;
 		while ((temp_node = current_node) != NULL)
 		{
-			current_node = current_node->next;
+			current_node = current_node->next_node;
 			free(temp_node);
 		}
 		*list_head = NULL;
