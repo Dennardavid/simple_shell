@@ -1,5 +1,5 @@
-#ifndef _SIMPLE_SHELL_H
-#define _SIMPLE_SHELL_H
+#ifndef SIMPLE_SHELL_H
+#define SIMPLE_SHELL_H
 
 #include <stdio.h>
 #include <unistd.h>
@@ -130,38 +130,6 @@ int _strlen(const char *str);
 char *_strtok(char *str, const char *delim);
 int _isDigit(const char *s);
 void reverse_string(char *str);
-
-/* mem.c */
-void copy_memory(void *new_ptr, const void *old_ptr, unsigned int new_size);
-void *reallocate_memory(void *old_ptr, unsigned int old_size, unsigned int new_size);
-char **reallocate_double_pointer(char **old_ptr, unsigned int old_size, unsigned int new_size);
-
-/* syntax_error.c */
-int is_repeated_char(char *input_str, int index);
-int is_error_separator_operator(char *input_str, int index, char last_char);
-int find_first_char(char *input_str, int *index);
-void print_syntax_error_msg(shell_info *shell_data, char *input_str, int index, int bool_val);
-int has_syntax_error(shell_info *shell_data, char *input_str);
-
-/* shellloop.c */
-char *remove_comment(char *input_str);
-void run_shell_loop(shell_info *shell_data);
-
-/* readline.c */
-char *read_input_line(int *is_eof);
-
-/* split.c */
-char *replace_char(char *input_str, int bool_val);
-void add_sep_line_nodes(sep_node **sep_head, line_node **line_head, char *input_str);
-void move_to_next_node(sep_node **sep_list_ptr, line_node **line_list_ptr, shell_info *shell_data);
-int split_input_commands(shell_info *shell_data, char *input_str);
-char **split_input_line(char *input_str);
-
-/* var.c */
-void check_env_vars(var_node **list_head, char *input_str, shell_info *data);
-int check_vars(var_node **list_head, char *input_str, char *start_str, shell_info *data);
-char *replace_input(var_node **list_head, char *input_str, char *new_input_str, int new_len);
-char *replace_var(char *input_str, shell_info *shell_data);
 
 /* getline.c */
 void copy_line(char **line_ptr, size_t *size, char *buffer, size_t index);
