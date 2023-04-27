@@ -72,7 +72,7 @@ ssize_t read_line(char **line_ptr, size_t *size, FILE *stream)
 			break;
 		}
 		if (input >= BUFFSIZE)
-			buffer = _realloc(buffer, input, input + 1);
+			buffer = reallocate_memory(buffer, input, input + 1);
 		buffer[input] = t;
 		input++;
 	}

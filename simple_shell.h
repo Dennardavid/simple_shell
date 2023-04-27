@@ -130,16 +130,38 @@ int _isDigit(const char *str);
 void reverse_string(char *str);
 int compare_chars(char *str, const char *delim);
 
+/* exit.c */
+int exit_command(shell_info *shell_data);
+
+/* memory_management.c */
+void copy_memory(void *new_ptr, const void *old_ptr, unsigned int new_size);
+void *reallocate_memory(void *old_ptr, unsigned int old_s, unsigned int new_s);
+char **realloc_db_ptr(char **old_ptr, unsigned int old_s, unsigned int new_s);
+
 /* shell.c */
 void free_shell_data(shell_info *shell_data);
 void set_shell_data(shell_info *shell_data, char **args);
 
-/* getline.c */
+/* lines */
+int execute_line(shell_info *shell_data);
+char *read_input_line(int *is_eof);
+
+/* _getline.c */
 void copy_line(char **line_ptr, size_t *size, char *buffer, size_t index);
 ssize_t read_line(char **line_ptr, size_t *size, FILE *stream);
 
-/* exec_line */
-int execute_line(shell_info *shell_data);
+/* loop.c */
+char *remove_comment(char *is);
+void run_shell_loop(shell_info *shell_data);
+
+/* variables.c */
+void check_env_vars(var_node **list_head, char *str, shell_info *data);
+int check_vars(var_node **list_head, char *str, char *s_str, shell_info *data);
+char *replace_input(var_node **list_head, char *str, char *n_str, int n_len);
+char *replace_var(char *input_str, shell_info *shell_data);
+
+/* sigint.c */
+void handle_sigint(int sig);
 
 /* cmd_exec.c */
 int is_current_dir(char *path_str, int *index);
