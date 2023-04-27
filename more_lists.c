@@ -15,7 +15,7 @@ var_node *add_var_node(var_node **list_head, int vlen, char *val, int val_len)
 	var_node *temp_node;
 
 	new_node = malloc(sizeof(var_node));
-	if (!new_node)
+	if (new_node == NULL)
 	{
 		return (NULL);
 	}
@@ -25,7 +25,7 @@ var_node *add_var_node(var_node **list_head, int vlen, char *val, int val_len)
 	new_node->val_len = val_len;
 	new_node->next_node = NULL;
 
-	if (*list_head == NULL)
+	if (*temp_node == NULL)
 	{
 		*list_head = new_node;
 	}
@@ -52,7 +52,7 @@ void free_var_node(var_node **list_head)
 	var_node *temp_node;
 	var_node *current_node;
 
-	if (!list_head)
+	if (list_head != NULL)
 	{
 		current_node = *list_head;
 		while ((temp_node = current_node) != NULL)
