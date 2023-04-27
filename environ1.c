@@ -66,14 +66,14 @@ void set_env_var(char *name_str, char *value_str, shell_info *shell_data)
 int set_env_var_cmd(shell_info *shell_data)
 {
 	/* check if two arguments are provided */
-	if (shell_data->arguments[1] == NULL || shell_data->arguments[2] == NULL)
+	if (shell_data->command_args[1] == NULL || shell_data->command_args[2] == NULL)
 	{
 		get_error_msg(shell_data, -1);
 		return (1);
 	}
 
 	/* set environment variable */
-	set_env_var(shell_data->arguments[1], shell_data->arguments[2], shell_data);
+	set_env_var(shell_data->command_args[1], shell_data->command_args[2], shell_data);
 
 	return (1);
 }
@@ -91,7 +91,7 @@ int unset_env_var_cmd(shell_info *shell_data)
 	int i, j, k;
 
 	/* check if argument is provided */
-	if (shell_data->arguments[1] == NULL)
+	if (shell_data->command_args[1] == NULL)
 	{
 		get_error_msg(shell_data, -1);
 		return (1);
@@ -103,7 +103,7 @@ int unset_env_var_cmd(shell_info *shell_data)
 	{
 		env_var = _strdup(shell_data->environment_vars[i]);
 		env_name = _strtok(env_var, "=");
-		if (_strcmp(env_name, shell_data->arguments[1]) == 0)
+		if (_strcmp(env_name, shell_data->command_args[1]) == 0)
 			k = i;
 		free(env_var);
 	}

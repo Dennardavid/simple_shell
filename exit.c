@@ -12,11 +12,11 @@ int exit_command(shell_info *shell_data)
 	int len;
 	int max_int;
 
-	if (shell_data->arguments[1])
+	if (shell_data->command_args[1])
 	{
-		u_status = convert_atoi(shell_data->arguments[1]);
-		is_digit = _isDigit(shell_data->arguments[1]);
-		len = _strlen(shell_data->arguments[1]);
+		u_status = convert_atoi(shell_data->command_args[1]);
+		is_digit = _isDigit(shell_data->command_args[1]);
+		len = _strlen(shell_data->command_args[1]);
 		max_int = u_status > (unsigned int)INT_MAX;
 		if (!is_digit || len > 10 || max_int)
 		{

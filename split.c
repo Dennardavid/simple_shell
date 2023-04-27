@@ -150,9 +150,9 @@ int split_input_commands(shell_info *shell_data, char *input_str)
 	while (list_l != NULL)
 	{
 		shell_data->user_input = list_l->line_str;
-		shell_data->arguments = split_input_line(shell_data->user_input);
+		shell_data->command_args = split_input_line(shell_data->user_input);
 		loop = execute_line(shell_data);
-		free(shell_data->arguments);
+		free(shell_data->command_args);
 
 		if (loop == 0)
 			break;

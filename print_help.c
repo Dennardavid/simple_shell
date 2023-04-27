@@ -19,7 +19,6 @@ void print_help_env(void)
  */
 void print_help_setenv(void)
 {
-
 	char *help_msg = "setenv: setenv (const char *name, const char *value,";
 
 	write(STDOUT_FILENO, help_msg, _strlen(help_msg));

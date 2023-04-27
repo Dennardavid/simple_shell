@@ -30,7 +30,7 @@ void *reallocate_memory(void *old_ptr, unsigned int old_s, unsigned int new_s)
 {
 	void *new_ptr;
 
-	if (!old_ptr)
+	if (old_ptr == NULL)
 	{
 		return (malloc(new_s));
 	}
@@ -47,7 +47,7 @@ void *reallocate_memory(void *old_ptr, unsigned int old_s, unsigned int new_s)
 	}
 
 	new_ptr = malloc(new_s);
-	if (!new_ptr)
+	if (new_ptr == NULL)
 	{
 		return (NULL);
 	}
@@ -77,7 +77,7 @@ char **realloc_db_ptr(char **old_ptr, unsigned int old_s, unsigned int new_s)
 	char **new_ptr;
 	unsigned int i;
 
-	if (!old_ptr)
+	if (old_ptr == NULL)
 	{
 		return (malloc(sizeof(char *) * new_s));
 	}
@@ -88,7 +88,7 @@ char **realloc_db_ptr(char **old_ptr, unsigned int old_s, unsigned int new_s)
 	}
 
 	new_ptr = malloc(sizeof(char *) * new_s);
-	if (!new_ptr)
+	if (new_ptr == NULL)
 	{
 		return (NULL);
 	}

@@ -61,7 +61,8 @@ char *get_cd_error_msg(shell_info *shell_data)
 		len_id = _strlen(shell_data->command_args[1]);
 	}
 
-	length = _strlen(shell_data->arguments[0]) + _strlen(shell_data->command_args[0]);
+	length = _strlen(shell_data->arguments[0]);
+	length += _strlen(shell_data->command_args[0]);
 	length += _strlen(str) + _strlen(msg) + len_id + 5;
 	err = malloc(sizeof(char) * (length + 1));
 

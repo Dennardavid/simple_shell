@@ -13,7 +13,7 @@ void change_dir_to(shell_info *shell_data)
 
 	getcwd(current_dir, sizeof(current_dir));
 
-	new_dir = shell_data->arguments[1];
+	new_dir = shell_data->command_args[1];
 	if (chdir(new_dir) == -1)
 	{
 		get_error_msg(shell_data, 2);
@@ -47,7 +47,7 @@ void change_dir_dot(shell_info *shell_data)
 
 	getcwd(current_dir, sizeof(current_dir));
 
-	new_dir = shell_data->arguments[1];
+	new_dir = shell_data->command_args[1];
 	if (chdir(new_dir) == -1)
 	{
 		get_error_msg(shell_data, 2);
@@ -159,7 +159,7 @@ int cd_command(shell_info *shell_data)
 	char *new_dir;
 	int is_home, is_home2, is_ddash;
 
-	new_dir = shell_data->arguments[1];
+	new_dir = shell_data->command_args[1];
 
 	if (new_dir != NULL)
 	{
