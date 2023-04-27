@@ -13,7 +13,7 @@ sep_node *add_separator_to_end(sep_node **list_head, char sep_char)
 	sep_node *new_node, *temp;
 
 	new_node = malloc(sizeof(sep_node));
-	if (!new_node)
+	if (new_node == NULL)
 	{
 		return (NULL);
 	}
@@ -22,7 +22,7 @@ sep_node *add_separator_to_end(sep_node **list_head, char sep_char)
 	new_node->next_node = NULL;
 	temp = *list_head;
 
-	if (!temp)
+	if (temp == NULL)
 	{
 		*list_head = new_node;
 	}
@@ -48,7 +48,7 @@ void freeSeparator(sep_node **list_head)
 	sep_node *temp;
 	sep_node *current;
 
-	if (!list_head)
+	if (list_head == NULL)
 	{
 		current = *list_head;
 		while ((temp = current))
