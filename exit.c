@@ -12,7 +12,7 @@ int exit_command(shell_info *shell_data)
 	int len;
 	int max_int;
 
-	if (shell_data->command_args[1])
+	if (shell_data->command_args[1] != NULL)
 	{
 		u_status = convert_atoi(shell_data->command_args[1]);
 		is_digit = _isDigit(shell_data->command_args[1]);
