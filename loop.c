@@ -22,14 +22,14 @@ void run_shell_loop(shell_info *shell_data)
 				continue;
 			}
 
-			if (check_syntax_error(shell_data, input) == 1)
+			if (has_syntax_error(shell_data, input) == 1)
 			{
 				shell_data->exit_status = 2;
 				free(input);
 				continue;
 			}
 			input = replace_var(input, shell_data);
-			loop = split_commands(shell_data, input);
+			loop = split_input_commands(shell_data, input);
 			shell_data->command_counter += 1;
 			free(input);
 		}

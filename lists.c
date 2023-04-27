@@ -18,7 +18,7 @@ sep_node *add_separator_to_end(sep_node **list_head, char sep_char)
 		return (NULL);
 	}
 
-	new_node->next_node = sep_char;
+	new_node->sep_char = sep_char;
 	new_node->next_node = NULL;
 	temp = *list_head;
 
@@ -78,7 +78,7 @@ line_node *add_line_to_end(line_node **list_head, char *line_str)
 		return (NULL);
 	}
 
-	new_node->next_node = line_str;
+	new_node->line_str = line_str;
 	new_node->next_node = NULL;
 	temp_node = *list_head;
 

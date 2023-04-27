@@ -13,8 +13,8 @@
 #include <limits.h>
 
 #define BUFFSIZE 1024
-#define TOK_BUFFSIZE 128
-#define TOK_DELIMITER " \t\r\n\a"
+#define TOKEN_BUFFSIZE 128
+#define TOKEN_DELIMITER " \t\r\n\a"
 
 extern char **environ;
 
@@ -163,6 +163,33 @@ char *replace_var(char *input_str, shell_info *shell_data);
 /* sigint.c */
 void handle_sigint(int sig);
 
+/* change_directory.c */
+void change_dir_dot(shell_info *shell_data);
+void change_dir_to(shell_info *shell_data);
+void change_dir_previous(shell_info *shell_data);
+void change_dir_to_home(shell_info *shell_data);
+int cd_command(shell_info *shell_data);
+
+/* builtin.c */
+int (*get_builtin_func(char *cmd_str))(shell_info *);
+
+/* exit_shell.c */
+int exit_command(shell_info *shell_data);
+
+/* syntax_error.c */
+int is_repeated_char(char *input_str, int index);
+int is_error_separator_operator(char *input_str, int index, char last_char);
+int find_first_char(char *input_str, int *index);
+void print_syn_err(shell_info *shell_data, char *str, int index, int bool_val);
+int has_syntax_error(shell_info *shell_data, char *input_str);
+
+/* split.c */
+char *replace_char(char *input_str, int bool_val);
+void add_sep_line_nodes(sep_node **sep_head, line_node **line_head, char *str);
+void move_to_next(sep_node **s_ptr, line_node **l_ptr, shell_info *shell_data);
+int split_input_commands(shell_info *shell_data, char *input_str);
+char **split_input_line(char *input_str);
+
 /* cmd_exec.c */
 int is_current_dir(char *path_str, int *index);
 char *find_command_path(char *cmd_str, char **env_vars);
@@ -173,25 +200,25 @@ int execute_cmd(shell_info *shell_data);
 /* env1.c */
 char *get_env_var(const char *name_str, char **env_vars);
 int print_env_vars(shell_info *shell_data);
+char *copy_var_info(char *name_str, char *value_str);
 
 /* env2.c */
-char *copy_var_info(char *name_str, char *value_str);
 void set_env_var(char *name_str, char *value_str, shell_info *shell_data);
 int set_env_var_cmd(shell_info *shell_data);
 int unset_env_var_cmd(shell_info *shell_data);
 
-/* cd.c */
-void change_dir_dot(shell_info *shell_data);
-void change_dir_to(shell_info *shell_data);
-void change_dir_previous(shell_info *shell_data);
-void change_dir_to_home(shell_info *shell_data);
-int cd_command(shell_info *shell_data);
+/* help.c */
+void print_help_env(void);
+void print_help_setenv(void);
+void print_help_unsetenv(void);
+void print_general_help(void);
+void print_help_exit(void);
 
-/* builtin */
-int (*get_builtin_func(char *cmd_str))(shell_info *shell_data);
-
-/* _exit.c */
-int exit_command(shell_info *shell_data);
+/* help2.c */
+void print_help(void);
+void print_help_alias(void);
+void print_help_cd(void);
+int help_command(shell_info *shell_data);
 
 /* stdlib.c */
 int get_num_len(int num);
@@ -211,21 +238,5 @@ char *get_env_error_msg(shell_info *shell_data);
 char *get_syntax_error_msg(char **args);
 char *get_permission_error_msg(char **args);
 char *get_path_126_error_msg(shell_info *shell_data);
-
-/* sigint.c */
-void handle_sigint(int sig);
-
-/* help.c */
-void print_help_env(void);
-void print_help_setenv(void);
-void print_help_unsetenv(void);
-void print_general_help(void);
-void print_help_exit(void);
-
-/* help2.c */
-void print_help(void);
-void print_help_alias(void);
-void print_help_cd(void);
-int help_command(shell_info *shell_data);
 
 #endif
