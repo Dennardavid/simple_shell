@@ -6,6 +6,6 @@
  */
 void handle_sigint(int sig)
 {
-    (void)sig;
-    write(STDOUT_FILENO, "\n$ ", 3);
+	(void)sig;
+	write(STDOUT_FILENO, "\n$ ", 3);
 }
