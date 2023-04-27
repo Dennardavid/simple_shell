@@ -135,7 +135,7 @@ char *replace_input(var_node **list_head, char *str, char *n_str, int n_len)
  * replace_var - Replaces variables in a string
  * @input_str: String to replace variables in
  * @shell_data: Pointer to the shell data structure
- * Return: new input 
+ * Return: new input
  */
 char *replace_var(char *input_str, shell_info *shell_data)
 {
