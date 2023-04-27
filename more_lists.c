@@ -73,7 +73,7 @@ void free_line_node(line_node **list_head)
 	line_node *temp_node;
 	line_node *current_node;
 
-	if (!list_head)
+	if (list_head != NULL)
 	{
 		current_node = *list_head;
 		while ((temp_node = current_node) != NULL)

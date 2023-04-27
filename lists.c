@@ -73,7 +73,7 @@ line_node *add_line_to_end(line_node **list_head, char *line_str)
 	line_node *new_node, *temp_node;
 
 	new_node = malloc(sizeof(line_node));
-	if (!new_node)
+	if (new_node == NULL)
 	{
 		return (NULL);
 	}
@@ -82,7 +82,7 @@ line_node *add_line_to_end(line_node **list_head, char *line_str)
 	new_node->next_node = NULL;
 	temp_node = *list_head;
 
-	if (!temp_node)
+	if (temp_node == NULL)
 	{
 		*list_head = new_node;
 	}
