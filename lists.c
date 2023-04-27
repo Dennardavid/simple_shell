@@ -1,6 +1,6 @@
 #include "simple_shell.h"
 
-/*
+/**
  * add_separator_to_end - adds a separator node to the end of a linked list
  * @list_head: double pointer to the head of the list
  * @sep_char: separator character to be added
@@ -38,7 +38,7 @@ sep_node *add_separator_to_end(sep_node **list_head, char sep_char)
 	return (*list_head);
 }
 
-/*
+/**
  * freeSeparator - frees a linked list of separator nodes
  * @list_head: double pointer to the head of the list
  */
@@ -60,7 +60,7 @@ void freeSeparator(sep_node **list_head)
 	}
 }
 
-/*
+/**
  * add_line_to_end - adds a line node to the end of a linked list
  * @list_head: double pointer to the head of the list
  * @line_str: line string to be added
