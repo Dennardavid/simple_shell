@@ -40,7 +40,7 @@ void set_shell_data(shell_info *shell_data, char **args)
 
 	/* Initialize other members */
 	shell_data->user_input = NULL;
-	shell_data->arguments = NULL;
+	shell_data->command_args = NULL;
 	shell_data->exit_status = 0;
 	shell_data->command_counter = 1;
 

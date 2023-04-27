@@ -18,7 +18,7 @@ char *get_env_error_msg(shell_info *shell_data)
 	length = _strlen(shell_data->arguments[0]) + _strlen(str);
 	length += _strlen(shell_data->command_args[0]) + _strlen(msg) + 4;
 	err = malloc(sizeof(char) * (length + 1));
-	if (err == NULL)
+	if (err == 0)
 	{
 		free(err);
 		free(str);

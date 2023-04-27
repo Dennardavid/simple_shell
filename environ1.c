@@ -1,7 +1,7 @@
 #include "simple_shell.h"
 
 /**
- * copy_var_info - copies the name and value of an 
+ * copy_var_info - copies the name and value of an
  * environment variable into a new string
  * @name_str: name of the environment variable
  * @value_str: value of the environment variable
@@ -117,10 +117,8 @@ int unset_env_var_cmd(shell_info *shell_data)
 	new_environ = malloc(sizeof(char *) * i);
 
 	for (i = j = 0; shell_data->environment_vars[i]; i++)
-	{
 		if (i != k)
 			new_environ[j++] = shell_data->environment_vars[i];
-	}
 
 	new_environ[j] = NULL;
 	free(shell_data->environment_vars[k]);

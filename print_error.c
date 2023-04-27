@@ -66,7 +66,7 @@ char *get_cd_error_msg(shell_info *shell_data)
 	length += _strlen(str) + _strlen(msg) + len_id + 5;
 	err = malloc(sizeof(char) * (length + 1));
 
-	if (err == NULL)
+	if (err == 0)
 	{
 		free(str);
 		return (NULL);
@@ -96,7 +96,7 @@ char *get_not_found_error_msg(shell_info *shell_data)
 	length = _strlen(shell_data->arguments[0]) + _strlen(str);
 	length += _strlen(shell_data->command_args[0]) + 16;
 	err = malloc(sizeof(char) * (length + 1));
-	if (err == NULL)
+	if (err == 0)
 	{
 		free(err);
 		free(str);
@@ -130,7 +130,7 @@ char *get_exit_error_msg(shell_info *shell_data)
 	length += _strlen(shell_data->command_args[0]);
 	length += _strlen(shell_data->command_args[1]) + 23;
 	err = malloc(sizeof(char) * (length + 1));
-	if (err == NULL)
+	if (err == 0)
 	{
 		free(str);
 		return (NULL);

@@ -43,7 +43,7 @@ char *convert_itoa(int num)
 	char *buffer;
 
 	buffer = malloc(sizeof(char) * (length + 1));
-	if (buffer == NULL)
+	if (buffer == 0)
 		return (NULL);
 
 	buffer[length] = '\0';
@@ -78,15 +78,15 @@ int convert_atoi(char *str)
 {
 	unsigned int count = 0, size = 0, result = 0, sign = 1, mult = 1, i;
 
-	while (str[count] != '\0')
+	while (*(str + count) != '\0')
 	{
-		if (size > 0 && (str[count] < '0' || str[count] > '9'))
+		if (size > 0 && (*(str + count) < '0' || *(str + count) > '9'))
 			break;
 
-		if (str[count] == '-')
+		if (*(str + count) == '-')
 			sign *= -1;
 
-		if (str[count] >= '0' && str[count] <= '9')
+		if ((*(str + count) >= '0') && (*(str + count) <= '9'))
 		{
 			if (size > 0)
 				mult *= 10;
@@ -97,7 +97,7 @@ int convert_atoi(char *str)
 
 	for (i = count - size; i < count; i++)
 	{
-		result += ((str[i] - '0') * mult);
+		result = result + ((*(str + i) - 48) * mult);
 		mult /= 10;
 	}
 
