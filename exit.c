@@ -18,7 +18,7 @@ int exit_command(shell_info *shell_data)
 		is_digit = _isDigit(shell_data->command_args[1]);
 		len = _strlen(shell_data->command_args[1]);
 		max_int = u_status > (unsigned int)INT_MAX;
-		if (is_digit == NULL || len > 10 || max_int != 0)
+		if (is_digit == NULL || len > 10 || max_int)
 		{
 			get_error_msg(shell_data, 2);
 			shell_data->exit_status = 2;
