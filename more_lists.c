@@ -25,13 +25,14 @@ var_node *add_var_node(var_node **list_head, int vlen, char *val, int val_len)
 	new_node->val_len = val_len;
 	new_node->next_node = NULL;
 
+	temp_node = *list_head;
+
 	if (*list_head == NULL)
 	{
 		*list_head = new_node;
 	}
 	else
 	{
-		temp_node = *list_head;
 		while (temp_node->next_node != NULL)
 		{
 			temp_node = temp_node->next_node;
