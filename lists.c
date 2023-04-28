@@ -48,7 +48,7 @@ void freeSeparator(sep_node **list_head)
 	sep_node *temp;
 	sep_node *current;
 
-	if (list_head == NULL)
+	if (list_head != NULL)
 	{
 		current = *list_head;
 		while ((temp = current))
