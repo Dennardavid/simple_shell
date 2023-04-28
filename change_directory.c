@@ -13,7 +13,7 @@ void change_dir_to(shell_info *shell_data)
 
 	getcwd(current_dir, sizeof(current_dir));
 
-	new_dir = shell_data->command_args[1];
+	new_dir = shell_data->cmd_args[1];
 	if (chdir(new_dir) == -1)
 	{
 		get_error_msg(shell_data, 2);
@@ -47,7 +47,7 @@ void change_dir_dot(shell_info *shell_data)
 
 	getcwd(current_dir, sizeof(current_dir));
 
-	new_dir = shell_data->command_args[1];
+	new_dir = shell_data->cmd_args[1];
 	if (chdir(new_dir) == -1)
 	{
 		get_error_msg(shell_data, 2);
@@ -82,7 +82,7 @@ void change_dir_to_home(shell_info *shell_data)
 	getcwd(current_dir, sizeof(current_dir));
 	copy_current_dir = _strdup(current_dir);
 
-	home_dir = get_env_var("HOME", shell_data->environment_vars);
+	home_dir = get_env_var("HOME", shell_data->ev);
 
 	if (home_dir == NULL)
 	{
@@ -118,7 +118,7 @@ void change_dir_previous(shell_info *shell_data)
 	getcwd(current_dir, sizeof(current_dir));
 	copy_current_dir = _strdup(current_dir);
 
-	old_dir = get_env_var("OLDPWD", shell_data->environment_vars);
+	old_dir = get_env_var("OLDPWD", shell_data->ev);
 
 	if (old_dir == NULL)
 		copy_old_dir = copy_current_dir;
@@ -132,7 +132,7 @@ void change_dir_previous(shell_info *shell_data)
 	else
 		set_env_var("PWD", copy_old_dir, shell_data);
 
-	new_dir = get_env_var("PWD", shell_data->environment_vars);
+	new_dir = get_env_var("PWD", shell_data->ev);
 
 	write(STDOUT_FILENO, new_dir, _strlen(new_dir));
 	write(STDOUT_FILENO, "\n", 1);
@@ -159,7 +159,7 @@ int cd_command(shell_info *shell_data)
 	char *new_dir;
 	int is_home, is_home2, is_ddash;
 
-	new_dir = shell_data->command_args[1];
+	new_dir = shell_data->cmd_args[1];
 
 	if (new_dir != NULL)
 	{

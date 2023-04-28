@@ -11,7 +11,7 @@ void check_env_vars(var_node **list_head, char *str, shell_info *data)
 	int row, chr, j, value_len;
 	char **env_vars;
 
-	env_vars = data->environment_vars;
+	env_vars = data->ev;
 	for (row = 0; env_vars[row]; row++)
 	{
 		for (j = 1, chr = 0; env_vars[row][chr]; chr++)

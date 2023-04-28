@@ -9,12 +9,12 @@ int execute_line(shell_info *shell_data)
 {
 	int (*builtin_func)(shell_info *data);
 
-	if (shell_data->command_args[0] == NULL)
+	if (shell_data->cmd_args[0] == NULL)
 	{
 		return (1);
 	}
 
-	builtin_func = get_builtin_func(shell_data->command_args[0]);
+	builtin_func = get_builtin_func(shell_data->cmd_args[0]);
 
 	if (builtin_func != NULL)
 	{

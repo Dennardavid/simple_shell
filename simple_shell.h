@@ -36,10 +36,10 @@ typedef struct info
 {
 	char **arguments;
 	char *user_input;
-	char **command_args;
+	char **cmd_args;
 	int exit_status;
 	int command_counter;
-	char **environment_vars;
+	char **ev;
 	char *process_id;
 } shell_info;
 
@@ -136,7 +136,7 @@ int exit_command(shell_info *shell_data);
 /* memory_management.c */
 void copy_memory(void *new_ptr, const void *old_ptr, unsigned int new_size);
 void *reallocate_memory(void *old_ptr, unsigned int old_s, unsigned int new_s);
-char **realloc_db_ptr(char **old_ptr, unsigned int old_s, unsigned int new_s);
+char **redbptr(char **old_ptr, unsigned int old_s, unsigned int new_s);
 
 /* shell.c */
 void free_shell_data(shell_info *shell_data);
@@ -190,49 +190,49 @@ void move_to_next(sep_node **s_ptr, line_node **l_ptr, shell_info *shell_data);
 int split_input_commands(shell_info *shell_data, char *input_str);
 char **split_input_line(char *input_str);
 
-/* cmd_exec.c */
+/* execute_command.c */
 int is_current_dir(char *path_str, int *index);
 char *find_command_path(char *cmd_str, char **env_vars);
 int is_cmd_executable(shell_info *shell_data);
 int has_cmd_error(char *dir_str, shell_info *shell_data);
 int execute_cmd(shell_info *shell_data);
 
-/* env1.c */
+/* environ.c */
 char *get_env_var(const char *name_str, char **env_vars);
 int print_env_vars(shell_info *shell_data);
 char *copy_var_info(char *name_str, char *value_str);
 
-/* env2.c */
+/* environ1.c */
 void set_env_var(char *name_str, char *value_str, shell_info *shell_data);
 int set_env_var_cmd(shell_info *shell_data);
 int unset_env_var_cmd(shell_info *shell_data);
 
-/* help.c */
+/* print_help.c */
 void print_help_env(void);
 void print_help_setenv(void);
 void print_help_unsetenv(void);
 void print_general_help(void);
 void print_help_exit(void);
 
-/* help2.c */
+/* print_help1.c */
 void print_help(void);
 void print_help_alias(void);
 void print_help_cd(void);
 int help_command(shell_info *shell_data);
 
-/* stdlib.c */
+/* standard_library.c */
 int get_num_len(int num);
 char *convert_itoa(int num);
 int convert_atoi(char *str);
 
-/* error1.c */
+/* print_error.c */
 char *concat_cd_path(shell_info *, char *, char *, char *);
 char *get_cd_error_msg(shell_info *shell_data);
 char *get_not_found_error_msg(shell_info *shell_data);
 char *get_exit_error_msg(shell_info *shell_data);
 int get_error_msg(shell_info *shell_data, int error_val);
 
-/* error2.c */
+/* print_error.c */
 char *get_alias_error_msg(char **args);
 char *get_env_error_msg(shell_info *shell_data);
 char *get_syntax_error_msg(char **args);

@@ -66,13 +66,13 @@ void *reallocate_memory(void *old_ptr, unsigned int old_s, unsigned int new_s)
 }
 
 /**
- * realloc_db_ptr - Reallocates a double pointer
+ * redbptr - Reallocates a double pointer
  * @old_ptr: Pointer to the old double pointer
  * @old_s: Size of the old double pointer
  * @new_s: Size of the new double pointer
  * Return: Pointer to new memory
  */
-char **realloc_db_ptr(char **old_ptr, unsigned int old_s, unsigned int new_s)
+char **redbptr(char **old_ptr, unsigned int old_s, unsigned int new_s)
 {
 	char **new_ptr;
 	unsigned int i;

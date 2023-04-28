@@ -150,9 +150,9 @@ int split_input_commands(shell_info *shell_data, char *input_str)
 	while (list_l != NULL)
 	{
 		shell_data->user_input = list_l->line_str;
-		shell_data->command_args = split_input_line(shell_data->user_input);
+		shell_data->cmd_args = split_input_line(shell_data->user_input);
 		loop = execute_line(shell_data);
-		free(shell_data->command_args);
+		free(shell_data->cmd_args);
 
 		if (loop == 0)
 			break;
@@ -200,7 +200,7 @@ char **split_input_line(char *input_str)
 		if (i == buffer_size)
 		{
 			buffer_size += TOKEN_BUFFSIZE;
-			tokens = realloc_db_ptr(tokens, i, sizeof(char *) * buffer_size);
+			tokens = redbptr(tokens, i, sizeof(char *) * buffer_size);
 			if (tokens == NULL)
 			{
 				write(STDERR_FILENO, ": allocation error\n", 18);

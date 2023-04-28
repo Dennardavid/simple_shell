@@ -16,7 +16,7 @@ char *get_env_error_msg(shell_info *shell_data)
 	str = convert_itoa(shell_data->command_counter);
 	msg = ": Unable to perform action\n";
 	length = _strlen(shell_data->arguments[0]) + _strlen(str);
-	length += _strlen(shell_data->command_args[0]) + _strlen(msg) + 4;
+	length += _strlen(shell_data->cmd_args[0]) + _strlen(msg) + 4;
 	err = malloc(sizeof(char) * (length + 1));
 	if (err == 0)
 	{
@@ -29,7 +29,7 @@ char *get_env_error_msg(shell_info *shell_data)
 	_strcat(err, ": ");
 	_strcat(err, str);
 	_strcat(err, ": ");
-	_strcat(err, shell_data->command_args[0]);
+	_strcat(err, shell_data->cmd_args[0]);
 	_strcat(err, msg);
 	_strcat(err, "\0");
 	free(str);
@@ -51,7 +51,7 @@ char *get_path_126_error_msg(shell_info *shell_data)
 
 	str = convert_itoa(shell_data->command_counter);
 	length = _strlen(shell_data->arguments[0]) + _strlen(str);
-	length += _strlen(shell_data->command_args[0]) + 24;
+	length += _strlen(shell_data->cmd_args[0]) + 24;
 	err = malloc(sizeof(char) * (length + 1));
 	if (err == 0)
 	{
@@ -63,7 +63,7 @@ char *get_path_126_error_msg(shell_info *shell_data)
 	_strcat(err, ": ");
 	_strcat(err, str);
 	_strcat(err, ": ");
-	_strcat(err, shell_data->command_args[0]);
+	_strcat(err, shell_data->cmd_args[0]);
 	_strcat(err, ": Permission denied\n");
 	_strcat(err, "\0");
 	free(str);

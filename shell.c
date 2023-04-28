@@ -12,13 +12,13 @@ void free_shell_data(shell_info *shell_data)
 	unsigned int index;
 
 	/* Free each environment variable */
-	for (index = 0; shell_data->environment_vars[index]; index++)
+	for (index = 0; shell_data->ev[index]; index++)
 	{
-		free(shell_data->environment_vars[index]);
+		free(shell_data->ev[index]);
 	}
 
 	/* Free environment variables array */
-	free(shell_data->environment_vars);
+	free(shell_data->ev);
 
 	/* Free process ID */
 	free(shell_data->process_id);
@@ -40,7 +40,7 @@ void set_shell_data(shell_info *shell_data, char **args)
 
 	/* Initialize other members */
 	shell_data->user_input = NULL;
-	shell_data->command_args = NULL;
+	shell_data->cmd_args = NULL;
 	shell_data->exit_status = 0;
 	shell_data->command_counter = 1;
 
@@ -49,16 +49,16 @@ void set_shell_data(shell_info *shell_data, char **args)
 		;
 
 	/* Allocate memory for environment variables */
-	shell_data->environment_vars = malloc(sizeof(char *) * (index + 1));
+	shell_data->ev = malloc(sizeof(char *) * (index + 1));
 
 	/* Copy environment variables */
 	for (index = 0; environ[index]; index++)
 	{
-		shell_data->environment_vars[index] = _strdup(environ[index]);
+		shell_data->ev[index] = _strdup(environ[index]);
 	}
 
 	/* Set last element to NULL */
-	shell_data->environment_vars[index] = NULL;
+	shell_data->ev[index] = NULL;
 
 	/* Set process ID */
 	shell_data->process_id = convert_itoa(getpid());

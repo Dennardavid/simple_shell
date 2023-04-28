@@ -46,25 +46,25 @@ void print_help_cd(void)
  */
 int help_command(shell_info *shell_data)
 {
-	if (shell_data->command_args[1] == NULL)
+	if (shell_data->cmd_args[1] == NULL)
 		print_general_help();
-	else if (_strcmp(shell_data->command_args[1], "setenv") == 0)
+	else if (_strcmp(shell_data->cmd_args[1], "setenv") == 0)
 		print_help_setenv();
-	else if (_strcmp(shell_data->command_args[1], "env") == 0)
+	else if (_strcmp(shell_data->cmd_args[1], "env") == 0)
 		print_help_env();
-	else if (_strcmp(shell_data->command_args[1], "unsetenv") == 0)
+	else if (_strcmp(shell_data->cmd_args[1], "unsetenv") == 0)
 		print_help_unsetenv();
-	else if (_strcmp(shell_data->command_args[1], "help") == 0)
+	else if (_strcmp(shell_data->cmd_args[1], "help") == 0)
 		print_help();
-	else if (_strcmp(shell_data->command_args[1], "exit") == 0)
+	else if (_strcmp(shell_data->cmd_args[1], "exit") == 0)
 		print_help_exit();
-	else if (_strcmp(shell_data->command_args[1], "cd") == 0)
+	else if (_strcmp(shell_data->cmd_args[1], "cd") == 0)
 		print_help_cd();
-	else if (_strcmp(shell_data->command_args[1], "alias") == 0)
+	else if (_strcmp(shell_data->cmd_args[1], "alias") == 0)
 		print_help_alias();
 	else
-		write(STDERR_FILENO, shell_data->command_args[0],
-		      _strlen(shell_data->command_args[0]));
+		write(STDERR_FILENO, shell_data->cmd_args[0],
+		      _strlen(shell_data->cmd_args[0]));
 
 	shell_data->exit_status = 0;
 	return (1);

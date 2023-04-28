@@ -38,23 +38,23 @@ void set_env_var(char *name_str, char *value_str, shell_info *shell_data)
 	int i;
 	char *var_env, *name_env;
 
-	for (i = 0; shell_data->environment_vars[i]; i++)
+	for (i = 0; shell_data->ev[i]; i++)
 	{
-		var_env = _strdup(shell_data->environment_vars[i]);
+		var_env = _strdup(shell_data->ev[i]);
 		name_env = _strtok(var_env, "=");
 		if (_strcmp(name_env, name_str) == 0)
 		{
-			free(shell_data->environment_vars[i]);
-			shell_data->environment_vars[i] = copy_var_info(name_env, value_str);
+			free(shell_data->ev[i]);
+			shell_data->ev[i] = copy_var_info(name_env, value_str);
 			free(var_env);
 			return;
 		}
 		free(var_env);
 	}
 
-	shell_data->environment_vars = realloc_db_ptr(shell_data->environment_vars, i, sizeof(char *) * (i + 2));
-	shell_data->environment_vars[i] = copy_var_info(name_str, value_str);
-	shell_data->environment_vars[i + 1] = NULL;
+	shell_data->ev = redbptr(shell_data->ev, i, sizeof(char *) * (i + 2));
+	shell_data->ev[i] = copy_var_info(name_str, value_str);
+	shell_data->ev[i + 1] = NULL;
 }
 
 /**
@@ -66,14 +66,14 @@ void set_env_var(char *name_str, char *value_str, shell_info *shell_data)
 int set_env_var_cmd(shell_info *shell_data)
 {
 	/* check if two arguments are provided */
-	if (shell_data->command_args[1] == NULL || shell_data->command_args[2] == NULL)
+	if (shell_data->cmd_args[1] == NULL || shell_data->cmd_args[2] == NULL)
 	{
 		get_error_msg(shell_data, -1);
 		return (1);
 	}
 
 	/* set environment variable */
-	set_env_var(shell_data->command_args[1], shell_data->command_args[2], shell_data);
+	set_env_var(shell_data->cmd_args[1], shell_data->cmd_args[2], shell_data);
 
 	return (1);
 }
@@ -91,7 +91,7 @@ int unset_env_var_cmd(shell_info *shell_data)
 	int i, j, k;
 
 	/* check if argument is provided */
-	if (shell_data->command_args[1] == NULL)
+	if (shell_data->cmd_args[1] == NULL)
 	{
 		get_error_msg(shell_data, -1);
 		return (1);
@@ -99,11 +99,11 @@ int unset_env_var_cmd(shell_info *shell_data)
 
 	k = -1;
 	/* find index of environment variable to unset */
-	for (i = 0; shell_data->environment_vars[i]; i++)
+	for (i = 0; shell_data->ev[i]; i++)
 	{
-		env_var = _strdup(shell_data->environment_vars[i]);
+		env_var = _strdup(shell_data->ev[i]);
 		env_name = _strtok(env_var, "=");
-		if (_strcmp(env_name, shell_data->command_args[1]) == 0)
+		if (_strcmp(env_name, shell_data->cmd_args[1]) == 0)
 			k = i;
 		free(env_var);
 	}
@@ -116,14 +116,14 @@ int unset_env_var_cmd(shell_info *shell_data)
 
 	new_environ = malloc(sizeof(char *) * i);
 
-	for (i = j = 0; shell_data->environment_vars[i]; i++)
+	for (i = j = 0; shell_data->ev[i]; i++)
 		if (i != k)
-			new_environ[j++] = shell_data->environment_vars[i];
+			new_environ[j++] = shell_data->ev[i];
 
 	new_environ[j] = NULL;
-	free(shell_data->environment_vars[k]);
-	free(shell_data->environment_vars);
-	shell_data->environment_vars = new_environ;
+	free(shell_data->ev[k]);
+	free(shell_data->ev);
+	shell_data->ev = new_environ;
 
 	return (1);
 }

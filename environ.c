@@ -64,13 +64,13 @@ int print_env_vars(shell_info *shell_data)
 {
 	int i, j;
 
-	for (i = 0; shell_data->environment_vars[i]; i++)
+	for (i = 0; shell_data->ev[i]; i++)
 	{
 
-		for (j = 0; shell_data->environment_vars[i][j]; j++)
+		for (j = 0; shell_data->ev[i][j]; j++)
 			;
 
-		write(STDOUT_FILENO, shell_data->environment_vars[i], j);
+		write(STDOUT_FILENO, shell_data->ev[i], j);
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	shell_data->exit_status = 0;

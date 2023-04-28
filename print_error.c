@@ -17,20 +17,20 @@ char *concat_cd_path(shell_info *shell_data, char *error, char *str, char *msg)
 	_strcat(error, ": ");
 	_strcat(error, str);
 	_strcat(error, ": ");
-	_strcat(error, shell_data->command_args[0]);
+	_strcat(error, shell_data->cmd_args[0]);
 	_strcat(error, msg);
-	if (shell_data->command_args[1][0] == '-')
+	if (shell_data->cmd_args[1][0] == '-')
 	{
 		not_allowed = malloc(3);
 		not_allowed[0] = '-';
-		not_allowed[1] = shell_data->command_args[1][1];
+		not_allowed[1] = shell_data->cmd_args[1][1];
 		not_allowed[2] = '\0';
 		_strcat(error, not_allowed);
 		free(not_allowed);
 	}
 	else
 	{
-		_strcat(error, shell_data->command_args[1]);
+		_strcat(error, shell_data->cmd_args[1]);
 	}
 
 	_strcat(error, "\n");
@@ -50,7 +50,7 @@ char *get_cd_error_msg(shell_info *shell_data)
 	char *err, *str, *msg;
 
 	str = convert_itoa(shell_data->command_counter);
-	if (shell_data->command_args[1][0] == '-')
+	if (shell_data->cmd_args[1][0] == '-')
 	{
 		msg = ": option not allowed ";
 		len_id = 2;
@@ -58,11 +58,11 @@ char *get_cd_error_msg(shell_info *shell_data)
 	else
 	{
 		msg = ": can't change directory to ";
-		len_id = _strlen(shell_data->command_args[1]);
+		len_id = _strlen(shell_data->cmd_args[1]);
 	}
 
 	length = _strlen(shell_data->arguments[0]);
-	length += _strlen(shell_data->command_args[0]);
+	length += _strlen(shell_data->cmd_args[0]);
 	length += _strlen(str) + _strlen(msg) + len_id + 5;
 	err = malloc(sizeof(char) * (length + 1));
 
@@ -94,7 +94,7 @@ char *get_not_found_error_msg(shell_info *shell_data)
 
 	str = convert_itoa(shell_data->command_counter);
 	length = _strlen(shell_data->arguments[0]) + _strlen(str);
-	length += _strlen(shell_data->command_args[0]) + 16;
+	length += _strlen(shell_data->cmd_args[0]) + 16;
 	err = malloc(sizeof(char) * (length + 1));
 	if (err == 0)
 	{
@@ -106,7 +106,7 @@ char *get_not_found_error_msg(shell_info *shell_data)
 	_strcat(err, ": ");
 	_strcat(err, str);
 	_strcat(err, ": ");
-	_strcat(err, shell_data->command_args[0]);
+	_strcat(err, shell_data->cmd_args[0]);
 	_strcat(err, ": not found\n");
 	_strcat(err, "\0");
 	free(str);
@@ -127,8 +127,8 @@ char *get_exit_error_msg(shell_info *shell_data)
 
 	str = convert_itoa(shell_data->command_counter);
 	length = _strlen(shell_data->arguments[0]) + _strlen(str);
-	length += _strlen(shell_data->command_args[0]);
-	length += _strlen(shell_data->command_args[1]) + 23;
+	length += _strlen(shell_data->cmd_args[0]);
+	length += _strlen(shell_data->cmd_args[1]) + 23;
 	err = malloc(sizeof(char) * (length + 1));
 	if (err == 0)
 	{
@@ -139,9 +139,9 @@ char *get_exit_error_msg(shell_info *shell_data)
 	_strcat(err, ": ");
 	_strcat(err, str);
 	_strcat(err, ": ");
-	_strcat(err, shell_data->command_args[0]);
+	_strcat(err, shell_data->cmd_args[0]);
 	_strcat(err, ": Number not allowed: ");
-	_strcat(err, shell_data->command_args[1]);
+	_strcat(err, shell_data->cmd_args[1]);
 	_strcat(err, "\n\0");
 	free(str);
 
@@ -171,9 +171,9 @@ int get_error_msg(shell_info *shell_data, int error_val)
 		err = get_not_found_error_msg(shell_data);
 		break;
 	case 2:
-		if (_strcmp("exit", shell_data->command_args[0]) == 0)
+		if (_strcmp("exit", shell_data->cmd_args[0]) == 0)
 			err = get_exit_error_msg(shell_data);
-		else if (_strcmp("cd", shell_data->command_args[0]) == 0)
+		else if (_strcmp("cd", shell_data->cmd_args[0]) == 0)
 			err = get_cd_error_msg(shell_data);
 		break;
 	}

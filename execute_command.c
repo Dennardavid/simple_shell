@@ -83,7 +83,7 @@ int is_cmd_executable(shell_info *shell_data)
 	int i;
 	char *input;
 
-	input = shell_data->command_args[0];
+	input = shell_data->cmd_args[0];
 	for (i = 0; input[i]; i++)
 	{
 		if (input[i] == '.')
@@ -131,7 +131,7 @@ int has_cmd_error(char *dir_str, shell_info *shell_data)
 		return (1);
 	}
 
-	if (_strcmp(shell_data->command_args[0], dir_str) != 0)
+	if (_strcmp(shell_data->cmd_args[0], dir_str) != 0)
 	{
 		if (access(dir_str, X_OK) == -1)
 		{
@@ -143,7 +143,7 @@ int has_cmd_error(char *dir_str, shell_info *shell_data)
 	}
 	else
 	{
-		if (access(shell_data->command_args[0], X_OK) == -1)
+		if (access(shell_data->cmd_args[0], X_OK) == -1)
 		{
 			get_error_msg(shell_data, 126);
 			return (1);
@@ -173,7 +173,7 @@ int execute_cmd(shell_info *shell_data)
 		return (1);
 	if (exec == 0)
 	{
-		dir = find_command_path(shell_data->command_args[0], shell_data->environment_vars);
+		dir = find_command_path(shell_data->cmd_args[0], shell_data->ev);
 		if (has_cmd_error(dir, shell_data) == 1)
 			return (1);
 	}
@@ -182,10 +182,10 @@ int execute_cmd(shell_info *shell_data)
 	if (pid == 0)
 	{
 		if (exec == 0)
-			dir = find_command_path(shell_data->command_args[0], shell_data->environment_vars);
+			dir = find_command_path(shell_data->cmd_args[0], shell_data->ev);
 		else
-			dir = shell_data->command_args[0];
-		execve(dir + exec, shell_data->command_args, shell_data->environment_vars);
+			dir = shell_data->cmd_args[0];
+		execve(dir + exec, shell_data->cmd_args, shell_data->ev);
 	}
 	else if (pid < 0)
 	{

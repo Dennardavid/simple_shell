@@ -49,13 +49,13 @@ void print_general_help(void)
 	char *help_msg = "^-^ bash, version 1.0(1)-release\n";
 
 	write(STDOUT_FILENO, help_msg, _strlen(help_msg));
-	help_msg = "These commands are defined internally.Type 'help' to see the list";
+	help_msg = "These commands are defined internally.Type 'help' to see list";
 	write(STDOUT_FILENO, help_msg, _strlen(help_msg));
-	help_msg = "Type 'help name' to find out more about the function 'name'.\n\n ";
+	help_msg = "Type 'help name' to find out more about the function 'name'.\n\n";
 	write(STDOUT_FILENO, help_msg, _strlen(help_msg));
 	help_msg = " alias: alias [name=['string']]\n cd: cd [-L|[-P [-e]] [-@]] ";
 	write(STDOUT_FILENO, help_msg, _strlen(help_msg));
-	help_msg = "[dir]\nexit: exit [n]\n  env: env [option] [name=value] [command ";
+	help_msg = "[dir]\nexit: exit [n]\n env: env [option] [name=value] [command ";
 	write(STDOUT_FILENO, help_msg, _strlen(help_msg));
 	help_msg = "[args]]\n  setenv: setenv [variable] [value]\n  unsetenv: ";
 	write(STDOUT_FILENO, help_msg, _strlen(help_msg));
